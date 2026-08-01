@@ -55,7 +55,7 @@ def load_and_clean_users(file_path):
             if len(values) != 2:
                 continue
             try:
-                cursor.execute("INSERT INTO TABLE user(firstName, lastName) VALUES ?",
+                cursor.execute("INSERT INTO TABLE users(firstName, lastName) VALUES ?",
                 tuple(values))
             except Exception as e:
                 print(e)
