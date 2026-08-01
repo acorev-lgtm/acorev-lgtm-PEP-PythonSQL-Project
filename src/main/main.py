@@ -51,12 +51,12 @@ def load_and_clean_users(file_path):
         reader = csv.reader(f)
         header = next(reader)
         for r in reader:
-            values = tuple(rs.strip() for rs in r)
-            if len(values) != 2:
+            v = tuple(rs.strip() for rs in r)
+            if len(v) != 2:
                 continue
             try:
                 cursor.execute("INSERT INTO TABLE users (firstName, lastName) VALUES (?, ?);",
-                values)
+                v)
             except Exception as e:
                 print(e)
                 continue
