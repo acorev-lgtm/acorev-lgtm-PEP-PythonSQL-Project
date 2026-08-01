@@ -52,7 +52,7 @@ def load_and_clean_users(file_path):
         header = next(reader)
         for r in reader:
             v = tuple(rs.strip() for rs in r)
-            if len(v) != 2 and "" in v:
+            if len(v) != 2 or "" in v:
                 continue
             try:
                 cursor.execute("INSERT INTO users (firstName, lastName) VALUES (?, ?);",
