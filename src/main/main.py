@@ -9,7 +9,6 @@ cursor = conn.cursor()
 
 
 def main():
-
     # users table
     cursor.execute('''CREATE TABLE IF NOT EXISTS users (
                         userId INTEGER PRIMARY KEY,
@@ -48,14 +47,26 @@ def main():
 
 # This function will load the users.csv file into the users table, discarding any records with incomplete data
 def load_and_clean_users(file_path):
-
-    print("TODO: load_users")
+    with open(file_path, mode='r', newline='', encoding='utf-8') as f:
+        reader = csv.reader(f)
+        header = next(reader)
+        for r in reader:
+            values = [rs.strip() for rs in r.split(",")]
+            if len(values) != 2:
+                continue
+            try:
+                cursor.execute("INSERT INTO TABLE user(firstName, lastName) VALUES ?",
+                tuple(values))
+            except Exception as e:
+                print(e)
+                continue
+    print("load_users")
 
 
 # This function will load the callLogs.csv file into the callLogs table, discarding any records with incomplete data
 def load_and_clean_call_logs(file_path):
 
-    print("TODO: load_call_logs")
+    print("load_call_logs")
 
 
 # This function will write analytics data to testUserAnalytics.csv - average call time, and number of calls per user.
@@ -63,14 +74,14 @@ def load_and_clean_call_logs(file_path):
 # example: 1,105.0,4 - where 1 is the userId, 105.0 is the avgDuration, and 4 is the numCalls.
 def write_user_analytics(csv_file_path):
 
-    print("TODO: write_user_analytics")
+    print("write_user_analytics")
 
 
 # This function will write the callLogs ordered by userId, then start time.
 # Then, write the ordered callLogs to orderedCalls.csv
 def write_ordered_calls(csv_file_path):
 
-    print("TODO: write_ordered_calls")
+    print("write_ordered_calls")
 
 
 
