@@ -51,7 +51,7 @@ def load_and_clean_users(file_path):
         reader = csv.reader(f)
         header = next(reader)
         for r in reader:
-            values = [rs.strip() for rs in r.split(",")]
+            values = [rs.strip() for rs in r]
             if len(values) != 2:
                 continue
             try:
