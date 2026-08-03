@@ -52,10 +52,10 @@ def load_and_clean_users(file_path):
         header = next(reader)
         for r in reader:
             v = tuple(rs.strip() for rs in r)
-            if len(v) != 2 or "" in v:
+            if (len(v) != 5 or "" in v) and (not v[1].isDigit()) and (not v[4].isDigit()):
                 continue
             try:
-                cursor.execute("INSERT INTO users (firstName, lastName) VALUES (?, ?);",
+                cursor.execute("INSERT INTO catalog (phoneNumber, startTime, endTime, direction, userId) VALUES (?, ?, ?, ?, ?);",
                 v)
             except Exception as e:
                 print(e)
@@ -65,7 +65,19 @@ def load_and_clean_users(file_path):
 
 # This function will load the callLogs.csv file into the callLogs table, discarding any records with incomplete data
 def load_and_clean_call_logs(file_path):
-
+    with open(file_path, mode='r', newline='', encoding='utf-8') as f:
+        reader = csv.reader(f)
+        header = next(reader)
+        for r in reader:
+            v = tuple(rs.strip() for rs in r)
+            if len(v) != 5 or "" in v:
+                continue
+            try:
+                cursor.execute("INSERT INTO users (firstName, lastName) VALUES (?, ?);",
+                v)
+            except Exception as e:
+                print(e)
+                continue
     print("load_call_logs")
 
 
