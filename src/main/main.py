@@ -52,12 +52,10 @@ def load_and_clean_users(file_path):
         header = next(reader)
         for r in reader:
             v = tuple(rs.strip() for rs in r)
-            if len(v) < 5 or "" in v:
-                continue
-            elif len(v) > 5 or (not v[1].isdigit())  or (not v[4].isdigit()):
+            if len(v) != 2 or "" in v:
                 continue
             try:
-                cursor.execute("INSERT INTO catalog (phoneNumber, startTime, endTime, direction, userId) VALUES (?, ?, ?, ?, ?);",
+                cursor.execute("INSERT INTO users (firstName, lastName) VALUES (?, ?);",
                 v)
             except Exception as e:
                 print(e)
@@ -72,10 +70,12 @@ def load_and_clean_call_logs(file_path):
         header = next(reader)
         for r in reader:
             v = tuple(rs.strip() for rs in r)
-            if len(v) != 5 or "" in v:
+            if len(v) < 5 or "" in v:
+                continue
+            elif len(v) > 5 or (not v[1].isdigit())  or (not v[4].isdigit()):
                 continue
             try:
-                cursor.execute("INSERT INTO users (firstName, lastName) VALUES (?, ?);",
+                cursor.execute("INSERT INTO catalog (phoneNumber, startTime, endTime, direction, userId) VALUES (?, ?, ?, ?, ?);",
                 v)
             except Exception as e:
                 print(e)
