@@ -75,7 +75,7 @@ def load_and_clean_call_logs(file_path):
             elif len(v) > 5 or (not v[1].isdigit())  or (not v[4].isdigit()):
                 continue
             try:
-                cursor.execute("INSERT INTO catalogs (phoneNumber, startTime, endTime, direction, userId) VALUES (?, ?, ?, ?, ?);",
+                cursor.execute("INSERT INTO callLogs (phoneNumber, startTime, endTime, direction, userId) VALUES (?, ?, ?, ?, ?);",
                 v)
             except Exception as e:
                 print(e)
