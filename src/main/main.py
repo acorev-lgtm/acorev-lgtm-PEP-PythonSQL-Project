@@ -52,7 +52,9 @@ def load_and_clean_users(file_path):
         header = next(reader)
         for r in reader:
             v = tuple(rs.strip() for rs in r)
-            if (len(v) != 5 or "" in v) and (not v[1].isdigit()) and (not v[4].isdigit()):
+            if len(v) < 5 or "" in v:
+                continue
+            elif len(v) > 5 or (not v[1].isdigit())  or (not v[4].isdigit()):
                 continue
             try:
                 cursor.execute("INSERT INTO catalog (phoneNumber, startTime, endTime, direction, userId) VALUES (?, ?, ?, ?, ?);",
