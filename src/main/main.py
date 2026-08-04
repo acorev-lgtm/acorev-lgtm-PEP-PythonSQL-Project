@@ -98,7 +98,16 @@ def write_user_analytics(csv_file_path):
                                 GROUP BY userId
                                 ORDER BY userId ASC;""")
             time_rows = cursor.fetchall()
-            print(time_rows)
+            for r in time_rows:
+                duration_dict[r[0]] = r[2] - r[1]
+            
+            cursor.execute("""SELECT userId, COUNT(callId) as numCalls
+                                FROM callLogs
+                                GROUP BY userId
+                                ORDER BY userId ASC;""")
+            time_rows = cursor.fetchall()
+            for r in time_rows:
+                duration_dict[r[0]] = r[1]
         except Exception as e:
             print(e)
 
