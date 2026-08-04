@@ -93,7 +93,7 @@ def write_user_analytics(csv_file_path):
         duration_dict = {}
         calls_dict = {}
         try:
-            cursor.execute("""SELECT userId, startTime, endTime
+            cursor.execute("""SELECT userId, AVG(startTime), AVG(endTime)
                                 FROM callLogs
                                 GROUP BY userId
                                 ORDER BY userId ASC;""")
