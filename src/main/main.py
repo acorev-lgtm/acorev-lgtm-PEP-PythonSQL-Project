@@ -107,9 +107,11 @@ def write_user_analytics(csv_file_path):
                                 ORDER BY userId ASC;""")
             time_rows = cursor.fetchall()
             for r in time_rows:
-                duration_dict[r[0]] = r[1]
+                calls_dict[r[0]] = r[1]
         except Exception as e:
             print(e)
+        for k in duration_dict.keys():
+            writer.writerows([k, duration_dict[k], calls_dict[k]])
 
     print("write_user_analytics")
 
