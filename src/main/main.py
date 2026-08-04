@@ -89,9 +89,9 @@ def load_and_clean_call_logs(file_path):
 def write_user_analytics(csv_file_path):
     with open(csv_file_path, mode="w", encoding="utf-8") as f:
         writer = csv.write(f)
-    #     header = writer.writerows(["userId","avgDuration","numCalls"])
-    #     duration_dict = {}
-    #     calls_dict = {}
+        header = writer.writerows(["userId","avgDuration","numCalls"])
+        duration_dict = {}
+        calls_dict = {}
     #     try:
     #         cursor.execute("""SELECT userId, startTime, endTime
     #                             FROM callLogs
