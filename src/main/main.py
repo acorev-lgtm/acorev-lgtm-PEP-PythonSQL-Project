@@ -89,7 +89,7 @@ def load_and_clean_call_logs(file_path):
 def write_user_analytics(csv_file_path):
     with open(csv_file_path, mode="w", encoding="utf-8") as f:
         writer = csv.writer(f)
-        header = writer.writerows(["userId","avgDuration","numCalls"])
+        header = writer.writerow(["userId","avgDuration","numCalls"])
         duration_dict = {}
         calls_dict = {}
         try:
@@ -111,7 +111,7 @@ def write_user_analytics(csv_file_path):
         except Exception as e:
             print(e)
         for k in duration_dict.keys():
-            writer.writerows([k, duration_dict[k], calls_dict[k]])
+            writer.writerow([k, duration_dict[k], calls_dict[k]])
 
     print("write_user_analytics")
 

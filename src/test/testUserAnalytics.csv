@@ -1,3 +1,4 @@
-u,s,e,r,I,d
-a,v,g,D,u,r,a,t,i,o,n
-n,u,m,C,a,l,l,s
+userId,avgDuration,numCalls
+1,100,4
+2,100,4
+4,50,2
