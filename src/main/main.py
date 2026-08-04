@@ -99,6 +99,9 @@ def write_user_analytics(csv_file_path):
                                 ORDER BY userId ASC;""")
             time_rows = cursor.fetchall()
             print(time_rows)
+        except Exception as e:
+                print(e)
+                continue
     print("write_user_analytics")
 
 
