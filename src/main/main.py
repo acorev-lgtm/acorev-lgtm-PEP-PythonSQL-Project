@@ -89,20 +89,20 @@ def load_and_clean_call_logs(file_path):
 def write_user_analytics(csv_file_path):
     with open(csv_file_path, mode="w", encoding="utf-8") as f:
         writer = csv.write(f)
-        header = writer.writerows(["userId","avgDuration","numCalls"])
-        duration_dict = {}
-        calls_dict = {}
-        try:
-            cursor.execute("""SELECT userId, startTime, endTime
-                                FROM callLogs
-                                GROUP BY userId
-                                ORDER BY userId ASC;""")
-            time_rows = cursor.fetchall()
-            print(time_rows)
-        except Exception as e:
-            print(e)
-            continue
-    print("write_user_analytics")
+    #     header = writer.writerows(["userId","avgDuration","numCalls"])
+    #     duration_dict = {}
+    #     calls_dict = {}
+    #     try:
+    #         cursor.execute("""SELECT userId, startTime, endTime
+    #                             FROM callLogs
+    #                             GROUP BY userId
+    #                             ORDER BY userId ASC;""")
+    #         time_rows = cursor.fetchall()
+    #         print(time_rows)
+    #     except Exception as e:
+    #         print(e)
+    #         continue
+    # print("write_user_analytics")
 
 
 # This function will write the callLogs ordered by userId, then start time.
